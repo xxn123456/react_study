@@ -153,6 +153,7 @@ export default [
         path: '/test',
         name: 'test',
         icon: 'profile',
+        // authority:['vip'],
         routes: [
           // profile
           {

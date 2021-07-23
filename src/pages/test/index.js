@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import PageHeaderWrapper from '@/components/PageHeaderWrapper';
-import { Table, Tag, Input, Button, Modal, Pagination, Form, Menu, Dropdown } from 'antd';
+import { Table, Tag, Input, Button, Modal, Pagination, Form, Menu, Dropdown,Alert } from 'antd';
 import { connect } from 'dva';
+
+import RenderAuthorized from '@/components/Authorized';
+
+
+
+
 import styles from './index.less';
 
 const { Column, ColumnGroup } = Table;
@@ -130,6 +136,10 @@ export default class testCompent extends Component {
     this.setState({ isModalVisible: false });
   };
   render() {
+
+    const Authorized = RenderAuthorized(['admin']);
+
+    
     const {list} =this.props.test;
     const menu = (
       <Menu onClick={this.handleMenuClick} selectedKeys={[]}>
@@ -154,7 +164,8 @@ export default class testCompent extends Component {
               <Input placeholder="地址" value={this.state.search.address} onChange={this.changeSearchAdd}/>
             </FormItem>
           </Form>
-          <Button type="primary" onClick={this.handleSearch}>搜索</Button>
+          <Authorized authority={['vip']}> <Button type="primary" onClick={this.handleSearch}>搜索</Button></Authorized>
+         
           <Button style={{ marginLeft: '8px' }}>重置</Button>
         </div>
 
